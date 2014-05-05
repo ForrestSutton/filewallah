@@ -1,15 +1,15 @@
-#models.py
-#http://django-appengine.com/
+from google.appengine.ext import db
+import datetime
 
-from google.appengine.ext import ndb
+class Books(db.Model):
+title = db.StringProperty(required=True)
+author = db.StringProperty(required=True)
+copyright_year = db.IntegerProperty()
+author_birthdate = db.DateProperty()
 
-class files(db.Model):
-    """Models an individual files entry with an original author, content, and date."""
-    users = ....
-    author = db.StringProperty()
-    content = db.StringProperty(multiline=True)
-    date = db.DateTimeProperty(auto_now_add=True)
-    
-    @classmethod
-    def get_key_from_name(cls, file_name=None):
-        return db.Key.from_path('Files', guestbook_name or 'default_files')
+obj = Books(title='The Grapes of Wrath',
+author='John Steinbeck')
+obj.copyright_year = 1939
+obj.author_birthdate = datetime.date(1902, 2, 27)
+
+obj.put()
