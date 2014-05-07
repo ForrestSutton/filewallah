@@ -1,21 +1,53 @@
-# import jinja2
-# import os
-# import webapp2
-# from datetime import datetime
-# from google.appengine.ext import db
+import os
+import jinja2
+import webapp2
+from models import File
+from datetime import datetime
+from google.appengine.ext import ndb
 
-# from models import Books
+template_dir=os.path.join(os.path.dirname(__file__),"templates")
+jinja_env=jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),autoescape=True)
 
-# TEMPLATE_DIR = os.path.join(os.path.dirname(__file__)+ '/templates')
-# jinja_environment = \
-#     jinja2.Environment(loader=jinja2.FileSystemLoader(TEMPLATE_DIR))
+def render_str(template, **params):
+    t = jinja_env.get_template(template)
+    return t.render(params)
 
-# # class MainPage(webapp2.RequestHandler):
-# #     def get(self, *args, **kwargs):
-# #     q = db.GqlQuery("SELECT * FROM Books")
-# #     bookss = q.fetch(20)
-# #     utils.render_template(self, 'index.html', 'books':books) 
+class BaseHandler(webapp2.RequestHandler):
+    def render(self, template, **kw):
+        self.response.out.write(render_str(template, **kw))
 
+    def write(self, *a, **kw):
+        self.response.out.write(*a, **kw)
 
-# #	template = jinja_evironment.get_template('index.html')
-# #	self.render_template('index.html', {'books': books})
+class MainPage(BaseHandler):
+    def get(self):
+	files = ndb.gql("SELECT * FROM File LIMIT 10")
+	file_dic = {"files": files }
+        self.render('index.html', **file_dic)
+
+    def post(self):
+        title = self.request.get('title')
+        link = self.request.get('link')
+        comment = self.request.get('comment')
+        self.write(title)
+        self.write("<br />")
+        self.write(link)
+        self.write("<br />")
+        self.write(comment)
+
+class New(BaseHandler):
+    def get(self):
+        self.render('new.html')
+  
+    def post(self):
+        title = self.request.get('title')
+        link = self.request.get('link')
+        comment = self.request.get('comment')
+        
+        file_post = File(title=title, link=link, comment=comment)
+        file_post.put()
+        self.redirect('/')    
+
+class About(BaseHandler):
+    def get(self):
+        self.render('about.html')
