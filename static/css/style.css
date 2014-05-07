@@ -10,6 +10,11 @@ body
   background: #F0EFE2 url(background.png) repeat;
   color: #777;}
 
+container
+{ position:relative;
+  width:100%;
+}
+
 p
 { padding: 0 0 20px 0;
   line-height: 1.7em;}

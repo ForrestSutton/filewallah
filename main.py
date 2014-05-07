@@ -18,6 +18,16 @@ class MainPage(webapp2.RequestHandler):
       template = jinja_environment.get_template('index.html')
       self.response.out.write(template.render(template_values))
 
+  def post(self):
+       title = self.request.get('title')
+       link = self.request.get('link')
+       comment = self.request.get('comment')
+       self.write(title)
+       self.write("<br />")
+       self.write(link)
+       self.write("<br />")
+       self.write(comment)
+
 class About(webapp2.RequestHandler):
   def get(self):
       template_values = {
