@@ -6,7 +6,16 @@
     </style>
 {% endblock %}
 {% block body  %}
-    <h1>filewallah</h1>
-      {{ welcome }}
-    </p>
+<div class="container">
+	<form method="post">
+		<label>File: </label>
+		<input type="text" name="title" /></br>
+		<label>Link: </label>
+		<input type="text" name="link" /></br>
+		<label>comment: </label>
+		<textarea name="comment"></textarea>
+			<br />
+		<input type="submit" value="submit" />	
+	</form>
+</div>
 {% endblock %}
