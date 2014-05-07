@@ -2,29 +2,38 @@ import os
 import jinja2
 import webapp2
 
-#from google.appengine.ext ndb
-#from google.appengine.api import users
+template_dir=os.path.join(os.path.dirname(__file__),"templates")
+jinja_env=jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),autoescape=True)
 
 
-jinja_environment = jinja2.Environment(
-   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)+ "/templates"),
-   extensions=['jinja2.ext.autoescape'],  autoescape=True)
+def render_str(template, **params):
+    t = jinja_env.get_template(template)
+    return t.render(params)
 
-class MainPage(webapp2.RequestHandler):
-  def get(self):
-      template_values = {
-                         'welcome': 'welcome to the page'
-       }	
-      template = jinja_environment.get_template('index.html')
-      self.response.out.write(template.render(template_values))
+class BaseHandler(webapp2.RequestHandler):
+    def render(self, template, **kw):
+        self.response.out.write(render_str(template, **kw))
 
-class About(webapp2.RequestHandler):
-  def get(self):
-      template_values = {
-                         'about': 'welcome to the about page'
-      }
-      template = jinja_environment.get_template('about.html')
-      self.response.out.write(template.render(template_values))
+    def write(self, *a, **kw):
+        self.response.out.write(*a, **kw)
+
+class MainPage(BaseHandler):
+    def get(self):
+        self.render('index.html')
+
+    def post(self):
+        title = self.request.get('title')
+        link = self.request.get('link')
+        comment = self.request.get('comment')
+        self.write(title)
+        self.write("<br />")
+        self.write(link)
+        self.write("<br />")
+        self.write(comment)
+
+class About(BaseHandler):
+    def get(self):
+        self.render('about.html')
 
 
 app = webapp2.WSGIApplication([('/', MainPage), ('/about', About), ], debug=True)
