@@ -10,6 +10,14 @@ body
   background: #F0EFE2 url(background.png) repeat;
   color: #777;}
 
+post {
+       max-width: 500px;
+       padding: 20px;
+       margin: 0 auto;
+      }
+
+
+
 container
 { position:relative;
   width:100%;
@@ -133,9 +141,9 @@ ol li
   background: transparent url(transparent.png) repeat;} 
 
 ul#menu, ul#menu li
-{ float: left;
-  margin: 0; 
-  padding: 0;}
+{ display: inline;
+  padding: 0px 10px 0px;
+  }
 
 ul#menu li
 { list-style: none;}
