@@ -1,0 +1,10 @@
+driveproperties
+
+{
+  "kind": "drive#property",
+  "etag": etag,
+  "selfLink": string,
+  "key": string,
+  "visibility": string,
+  "value": string
+}
