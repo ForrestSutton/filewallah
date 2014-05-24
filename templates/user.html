@@ -1,4 +1,15 @@
-{% extends "base.html"%}
-{% block body %}
-this is the user page
+{% extends 'base.html'%}
+{% block body  %}
+<div class="container">
+	<form method="post">
+		<label>User: </label>
+		<input type="text" name="user" /></br>
+		<label>Link: </label>
+		<input type="text" name="link" /></br>
+		<label>comment: </label>
+		<textarea name="comment"></textarea>
+			<br />
+		<input type="submit" value="submit" />	
+	</form>
+</div>
 {% endblock %}

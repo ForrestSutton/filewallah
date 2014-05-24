@@ -6,3 +6,12 @@ class File(ndb.Model):
     link    = ndb.StringProperty()
     comment = ndb.StringProperty()
     adddate = ndb.DateTimeProperty(auto_now_add=True)
+
+
+
+ class User(ndb.Model):
+    name      = ndb.StringProperty()   
+    email     = ndb.StringProperty()
+    ext		  = ndb.StringProperty()	
+    funFact   = ndb.StringProperty()
+    startDate = ndb.DateTimeProperty()
