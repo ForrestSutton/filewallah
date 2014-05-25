@@ -9,9 +9,9 @@ class File(ndb.Model):
 
 
 
- class User(ndb.Model):
-    name      = ndb.StringProperty()   
-    email     = ndb.StringProperty()
-    ext		  = ndb.StringProperty()	
-    funFact   = ndb.StringProperty()
-    startDate = ndb.DateTimeProperty()
+class Member(ndb.Model):
+   name      = ndb.StringProperty()   
+   email     = ndb.StringProperty()
+   ext		  = ndb.StringProperty()	
+   funFact   = ndb.StringProperty()
+   startDate = ndb.DateTimeProperty()

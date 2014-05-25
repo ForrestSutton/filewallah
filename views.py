@@ -1,6 +1,9 @@
+#!/usr/bin/python
+
 import os
 import jinja2
 import webapp2
+import basehandlers
 from models import File
 from datetime import datetime
 from google.appengine.ext import ndb
@@ -35,18 +38,18 @@ class MainPage(BaseHandler):
         self.write("<br />")
         self.write(comment)
 
-class New(BaseHandler):
-    def get(self):
-        self.render('new.html')
+# class New(BaseHandler):
+#     def get(self):
+#         self.render('new.html')
   
-    def post(self):
-        title = self.request.get('title')
-        link = self.request.get('link')
-        comment = self.request.get('comment')
+#     def post(self):
+#         title = self.request.get('title')
+#         link = self.request.get('link')
+#         comment = self.request.get('comment')
         
-        file_post = File(title=title, link=link, comment=comment)
-        file_post.put()
-        self.redirect('/')    
+#         file_post = File(title=title, link=link, comment=comment)
+#         file_post.put()
+#         self.redirect('/')    
 
 class About(BaseHandler):
     def get(self):
