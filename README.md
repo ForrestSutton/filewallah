@@ -7,7 +7,7 @@ the first version
 
 
 #todo  
-data models
+data models of file list
 add google drive indexings 
 add javascript 
 add css elements 
