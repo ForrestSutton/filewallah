@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+import os
 import webapp2
 from models import File
 from views import MainPage, About, New

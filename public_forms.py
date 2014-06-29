@@ -14,16 +14,16 @@ class fileForm(Form):
     adddate = ndb.DateTimeProperty(auto_now_add=True) 
 
 class MemberForm(Form):
-    name      = TextField(u'link', validators=[validators.required()]) 
-    email     = TextField(u'link', validators=[validators.required()])
-    ext		  = TextField(u'link', validators=[validators.required()])	
+    name      = TextField(u'name', validators=[validators.required()]) 
+    email     = TextField(u'email', validators=[validators.required()])
+    ext		  = TextField(u'ext', validators=[validators.required()])	
     funFact   = TextAreaField(u'fun fact') 
     startDate = ndb.DateTimeProperty()   
 
 	
 	# cumstom validation code 
-	# def validate_company(form, field):
-	# 	founder = form.founder.data
-	# 	if founder:
+	# def validate_field(form, field):
+	# 	sfield = form.sfield.data
+	# 	if sfield:
 	# 		if not field.data:
-	# 			raise validators.ValidationError('If you are Founder, Company Domain is Required')
+	# 			raise validators.ValidationError('If you are sfield, reasons ')
