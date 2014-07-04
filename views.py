@@ -39,19 +39,31 @@ class MainPage(BaseHandler):
         self.write(comment)
 
 class New(BaseHandler):
-    pass
-#     def get(self):
-#         self.render('new.html')
+
+    def get(self):
+         self.render('new.html')
   
-#     def post(self):
-#         title = self.request.get('title')
-#         link = self.request.get('link')
-#         comment = self.request.get('comment')
+    def post(self):
+        title = self.request.get('title')
+        link = self.request.get('link')
+        comment = self.request.get('comment')
         
-#         file_post = File(title=title, link=link, comment=comment)
-#         file_post.put()
-#         self.redirect('/')    
+        file_post = File(title=title, link=link, comment=comment)
+        file_post.put()
+        self.redirect('/')    
 
 class About(BaseHandler):
     def get(self):
         self.render('about.html')
+
+class Member(BaseHandler):
+    def get(self):
+        self.render('member.html')
+  
+    def post(self):
+        name      = self.request.get('name') 
+        email     = self.request.get('email')
+        ext       = self.request.get('ext') 
+        funFact   = self.request.get('funFact')
+        startDate = self.request.get('startDate')
+
